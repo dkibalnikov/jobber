@@ -1,0 +1,9 @@
+# Jobber
+
+Jobber allows to launch jobs in RStudio simply selecting code and launcing bounded with:
+1. Packages already in your enviroment
+2. Variables already in your enviroment
+
+```R
+devtools::install_github("dkibalnikov/jobber")
+```
