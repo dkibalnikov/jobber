@@ -5,7 +5,7 @@ Jobber simplifies background jobs usage in interactive manner. Once long run cod
 ## Addin
 Use addin to launch job in background
 
-![](/man/figures/addin.png|50)
+![](/man/figures/addin.png)
 
 ## Installation
 
