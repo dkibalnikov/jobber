@@ -63,7 +63,7 @@ run_bg <- function(cntx=NULL, view=FALSE){
       workingDir = getwd(),
       exportEnv = "R_GlobalEnv"
     )
-    if(view){utils::View(.jobber, "jobber")}
+    if(view){View(.jobber, "jobber")}
   }
 }
 #'
@@ -77,7 +77,7 @@ run_view <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  utils::View(eval(str2expression(paste0("{", context, "}"))), title = 'jobber')
+  View(eval(str2expression(paste0("{", context, "}"))), title = 'jobber')
 
 }
 #'
