@@ -28,7 +28,6 @@ run_bg <- function(cntx=NULL, view=FALSE){
   # Save selection to a temporary file
   tf <- tempfile("jobber_tmp", fileext = ".R")
   tfc <- file(tf, open='w')
-  .jobber <- NULL
 
   # Write selected code to background environment
   if(!is.null(context) && context != "") {

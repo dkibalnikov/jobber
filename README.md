@@ -11,5 +11,5 @@ devtools::install_github("dkibalnikov/jobber")
 ```
  ## Other packages 
  
-[job](https://lindeloev.github.io/job/)
-[callr](https://callr.r-lib.org/)
+- [job](https://lindeloev.github.io/job/)
+- [callr](https://callr.r-lib.org/)
