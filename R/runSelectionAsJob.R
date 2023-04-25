@@ -61,9 +61,8 @@ viewSelection <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  .jobber <- eval(str2expression(paste0("{", context, "}")))
+  View(eval(str2expression(paste0("{", context, "}"))), title = '.jobber')
 
-  View(.jobber)
 }
 
 viewSelectionAsJob <- function(cntx=NULL){
