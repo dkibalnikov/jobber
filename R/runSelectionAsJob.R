@@ -1,54 +1,71 @@
-runSelectionAsJob <- function(importEnv=FALSE, attachPackages=FALSE) {
+runSelectionAsJob <- function(str, view=FALSE){
 
-  ## Get the document context.
-  context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
-
-  if(attachPackages) {
-    si=sessionInfo()
-    packages=names(si$otherPkgs)
+  # Fork logic for string purpose
+  if(is.null(str) && str == ""){
+    # Get selected context
+    context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
+  }else{
+    context <- str
   }
 
-  ## if not empty selection
-  if (!is.null(context) && context != "") {
+  # Get list of packages from environment
+  packages <- names(sessionInfo()$otherPkgs)
 
-    ## save selection to a temporary file
-    tf <- tempfile("jobber_tmp", fileext = ".R")
-    tfc=file(tf, open='w')
-    if(attachPackages) {
-      writeLines("sapply(", con=tfc, )
+  # Save selection to a temporary file
+  tf <- tempfile("jobber_tmp", fileext = ".R")
+  tfc <- file(tf, open='w')
+
+  # Write selected code to background environment
+  if(!is.null(context) && context != "") {
+    # Write code to load packages in background environment
+    if(!is.null(packages)){
+      writeLines("lapply(", con=tfc)
       dput(packages, file = tfc)
       writeLines(",library, character.only=T)", con=tfc)
     }
-    writeLines(context, con = tfc, sep = "\n")
+    if(view){
+      context_vw <- paste0(".jobber <- {", context, "}")
+      writeLines(context_vw, con = tfc, sep = "\n")
+    }else{
+      writeLines(context, con = tfc, sep = "\n")
+    }
     writeLines("\n", con = tfc)
     flush(tfc)
 
-    ## delete temporary file
+    # Delete temporary file
     on.exit({
       ## allow time for scripting to start
       Sys.sleep(5)
       close(tfc)
       unlink(tf)
-    }, add=T)
+    }, add=TRUE)
 
-    ## run the temp script as a job, returning the
-    ## results to the global environment
-    .rs.api.runScriptJob(
+    # Run the temp script as a job, returning the
+    # Results to the global environment
+    rstudioapi::jobRunScript(
       path = path.expand(tf),
-      importEnv = importEnv,
+      importEnv = TRUE,
       workingDir = getwd(),
       exportEnv = "R_GlobalEnv"
     )
-
+    if(view){View(.jobber)}
   }
 }
 
-
-
-runSelectionAsJobWithEnv <- function() {
-  runSelectionAsJob(importEnv=TRUE, attachPackages=FALSE)
+viewSelection <- function(str){
+  # Fork logic for string purpose
+  if(is.null(str) && str == ""){
+    # Get selected context
+    context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
+  }else{
+    context <- str
+  }
+  #
+  eval(str2expression(paste0("View(", context, ")")))
 }
 
-runSelectionAsJobWithEnvPackages <- function() {
-  runSelectionAsJob(importEnv=TRUE, attachPackages=TRUE)
+viewSelectionAsJob <- function(str){
+  runSelectionAsJob(str, view = TRUE)
 }
+
+

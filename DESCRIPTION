@@ -8,3 +8,6 @@ Description: Jobber allows to launch jobs in RStudio simply selecting code and l
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    rstudioapi,
+    utils

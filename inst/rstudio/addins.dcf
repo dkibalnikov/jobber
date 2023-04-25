@@ -1,15 +1,14 @@
-Description: Runs the selection as a background Job.
+Name: View selected
+Description: Runs the selected code and then perfoms View
+Binding: viewSelection
+Interactive: false
+
+Name: Run selected in background
+Description: Runs the selected code as a background job importing objects and packages from original session
 Binding: runSelectionAsJob
 Interactive: false
 
-Name: Run as Job with Environment
-Description: Runs the selection as a background Job importing objects from
-    original session.
-Binding: runSelectionAsJobWithEnv
-Interactive: false
-
-Name: Run as Job with Environment and Packages
-Description: Runs the selection as a background Job importing objects and
-    attaching packages from original session.
-Binding: runSelectionAsJobWithEnvPackages
+Name: View selected from background run
+Description: Runs the selected code as a background job importing objects and packages from original session and view result
+Binding: viewSelectionAsJob
 Interactive: false
