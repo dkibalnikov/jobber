@@ -1,4 +1,4 @@
-runSelectionAsJob <- function(cntx, view=FALSE){
+runSelectionAsJob <- function(cntx=NULL, view=FALSE){
 
   # Fork logic for cntxing purpose
   if(is.null(cntx) && cntx == ""){
@@ -52,7 +52,7 @@ runSelectionAsJob <- function(cntx, view=FALSE){
   }
 }
 
-viewSelection <- function(cntx){
+viewSelection <- function(cntx=NULL){
   # Fork logic for cntxing purpose
   if(is.null(cntx) && cntx == ""){
     # Get selected context
@@ -64,7 +64,7 @@ viewSelection <- function(cntx){
   eval(cntx2expression(paste0("View(", context, ")")))
 }
 
-viewSelectionAsJob <- function(cntx){
+viewSelectionAsJob <- function(cntx=NULL){
   runSelectionAsJob(cntx, view = TRUE)
 }
 
