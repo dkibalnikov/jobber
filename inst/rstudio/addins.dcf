@@ -1,14 +1,14 @@
-Name: View selected
+Name: Run and view
 Description: Runs the selected code and then perfoms View
-Binding: viewSelection
+Binding: run_view
 Interactive: false
 
-Name: Run selected in background
+Name: Run in background
 Description: Runs the selected code as a background job importing objects and packages from original session
-Binding: runSelectionAsJob
+Binding: run_bg
 Interactive: false
 
-Name: View selected from background run
-Description: Runs the selected code as a background job importing objects and packages from original session and view result
-Binding: viewSelectionAsJob
+Name: Run in background and view
+Description: Runs the selected code as a background job importing objects and packages from original session and finally views a result
+Binding: run_bg_view
 Interactive: false

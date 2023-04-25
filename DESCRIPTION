@@ -1,13 +1,15 @@
 Package: jobber
 Type: Package
-Title: Run selected code as a job
+Title: jobber
 Version: 0.2.0
-Author: Who wrote it
+Author: Kibalnikov Dmitry
 Maintainer: The package maintainer <d.kibalnikov@gmail.com>
-Description: Jobber allows to launch jobs in RStudio simply selecting code and launching with your enviroment or/and with your attached packages
-License: What license is it under?
+Description: Jobber simplifies background jobs usage in interactive manner. Once long run code is identified select it and pass to background job while continue to work with script.  
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Roxygen: list(markdown = TRUE)
 Imports: 
     rstudioapi,
     utils
+RoxygenNote: 7.2.1

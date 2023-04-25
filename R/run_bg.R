@@ -1,4 +1,18 @@
-runSelectionAsJob <- function(cntx=NULL, view=FALSE){
+#' Use background jobs interactively
+#'
+#' Set of function to make interactive work faster
+#'
+#' Group of functions Details paragraph.
+#'
+#' @describeIn run_bg Runs the selected code as a background job importing objects and packages from original session
+#'
+#'
+#' @param cntx a string param containing code to launch (mostly for debug purpose)
+#' @param view a boolean param available only for `run_bg()`
+#'
+#' @return `run_bg()` and `run_bg_view` returns objects from background environment to global one
+#' `run_bg_view` and `run_view` launch `View()` function to show result
+run_bg <- function(cntx=NULL, view=FALSE){
 
   # Fork logic for debug purpose
   if(is.null(cntx)){
@@ -9,11 +23,12 @@ runSelectionAsJob <- function(cntx=NULL, view=FALSE){
   }
 
   # Get list of packages from environment
-  packages <- names(sessionInfo()$otherPkgs)
+  packages <- names(utils::sessionInfo()$otherPkgs)
 
   # Save selection to a temporary file
   tf <- tempfile("jobber_tmp", fileext = ".R")
   tfc <- file(tf, open='w')
+  .jobber <- NULL
 
   # Write selected code to background environment
   if(!is.null(context) && context != "") {
@@ -48,11 +63,12 @@ runSelectionAsJob <- function(cntx=NULL, view=FALSE){
       workingDir = getwd(),
       exportEnv = "R_GlobalEnv"
     )
-    if(view){View(.jobber)}
+    if(view){utils::View(.jobber, "jobber")}
   }
 }
-
-viewSelection <- function(cntx=NULL){
+#'
+#' @describeIn run_bg Runs the selected code and then performs View
+run_view <- function(cntx=NULL){
   # Fork logic for string purpose
   if(is.null(cntx)){
     # Get selected context
@@ -61,12 +77,13 @@ viewSelection <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  View(eval(str2expression(paste0("{", context, "}"))), title = '.jobber')
+  utils::View(eval(str2expression(paste0("{", context, "}"))), title = 'jobber')
 
 }
-
-viewSelectionAsJob <- function(cntx=NULL){
-  runSelectionAsJob(cntx, view = TRUE)
+#'
+#' @describeIn run_bg Runs the selected code as a background job importing objects and packages from original session and finally views a result
+run_bg_view<- function(cntx=NULL){
+  run_bg(cntx, view = TRUE)
 }
 
 
