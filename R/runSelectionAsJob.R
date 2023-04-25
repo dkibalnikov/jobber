@@ -1,11 +1,11 @@
-runSelectionAsJob <- function(str, view=FALSE){
+runSelectionAsJob <- function(cntx, view=FALSE){
 
-  # Fork logic for string purpose
-  if(is.null(str) && str == ""){
+  # Fork logic for cntxing purpose
+  if(is.null(cntx) && cntx == ""){
     # Get selected context
     context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
   }else{
-    context <- str
+    context <- cntx
   }
 
   # Get list of packages from environment
@@ -52,20 +52,20 @@ runSelectionAsJob <- function(str, view=FALSE){
   }
 }
 
-viewSelection <- function(str){
-  # Fork logic for string purpose
-  if(is.null(str) && str == ""){
+viewSelection <- function(cntx){
+  # Fork logic for cntxing purpose
+  if(is.null(cntx) && cntx == ""){
     # Get selected context
     context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
   }else{
-    context <- str
+    context <- cntx
   }
   #
-  eval(str2expression(paste0("View(", context, ")")))
+  eval(cntx2expression(paste0("View(", context, ")")))
 }
 
-viewSelectionAsJob <- function(str){
-  runSelectionAsJob(str, view = TRUE)
+viewSelectionAsJob <- function(cntx){
+  runSelectionAsJob(cntx, view = TRUE)
 }
 
 
