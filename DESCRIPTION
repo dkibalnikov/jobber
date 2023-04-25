@@ -1,7 +1,7 @@
 Package: jobber
 Type: Package
 Title: Run selected code as a job
-Version: 0.1.0
+Version: 0.2.0
 Author: Who wrote it
 Maintainer: The package maintainer <d.kibalnikov@gmail.com>
 Description: Jobber allows to launch jobs in RStudio simply selecting code and launching with your enviroment or/and with your attached packages

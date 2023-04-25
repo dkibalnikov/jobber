@@ -1,6 +1,6 @@
 runSelectionAsJob <- function(cntx=NULL, view=FALSE){
 
-  # Fork logic for cntxing purpose
+  # Fork logic for debug purpose
   if(is.null(cntx)){
     # Get selected context
     context <- rstudioapi::getActiveDocumentContext()$selection[[1]]$text
@@ -61,7 +61,9 @@ viewSelection <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  eval(str2expression(paste0("View(", context, ")")))
+  .jobber <- eval(str2expression(context))
+
+  View(.jobber)
 }
 
 viewSelectionAsJob <- function(cntx=NULL){
