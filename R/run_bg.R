@@ -58,6 +58,7 @@ run_bg <- function(cntx=NULL, view=FALSE){
     # Results to the global environment
     rstudioapi::jobRunScript(
       path = path.expand(tf),
+      name = context,
       importEnv = TRUE,
       workingDir = getwd(),
       exportEnv = "R_GlobalEnv"
