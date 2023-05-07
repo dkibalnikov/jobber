@@ -77,7 +77,6 @@ run_view <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  require(data.table, include.only = .__C__data.table) # fix data table dot "."
   View(eval(str2expression(paste0("{", context, "}"))), title = 'jobber')
 
 }
