@@ -77,7 +77,7 @@ run_view <- function(cntx=NULL){
     context <- cntx
   }
   # View result of selected run
-  View(eval(str2expression(paste0("{", context, "}"))), title = 'jobber')
+  View(eval(str2expression(paste0("{", context, "}")), envir = 0), title = 'jobber')
 
 }
 #'
